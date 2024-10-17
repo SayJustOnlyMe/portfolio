@@ -13,4 +13,5 @@
 
   - [**Модуль IV**](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204)
     - [Решение Задачи №1](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_1.sql)
+    - [Описание Задачи №2](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/description_2.md)
     - [Решение Задачи №2](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_2.sql)
