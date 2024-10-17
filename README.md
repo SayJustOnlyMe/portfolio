@@ -1,7 +1,7 @@
 # Портфолио
 
-## [Yandex Workshop](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop)
-### [SQL for development](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop/SQL%20for%20development)
+## [Яндекс Практикум](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop)
+### [SQL для разработки](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop/SQL%20for%20development)
   - [**Модуль I**](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201)
     - [Решение Задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201/queries.sql)
 
