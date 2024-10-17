@@ -15,4 +15,4 @@
     - составить план оптимизированного запроса;
     - описать, что изменилось в плане запроса после оптимизации;
     - указать общее время выполнения запроса после оптимизации;
-### Решение задачи [тут](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_2.sql)
+### [Решение задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_2.sql)
