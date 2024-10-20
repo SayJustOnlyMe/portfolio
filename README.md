@@ -25,4 +25,7 @@
   <a href="https://vk.com/just_onlyme">
     <img src="https://img.shields.io/badge/-VK-%3C003f5c%3E=linkedin&logoColor=white" alt="LinkedIn Badge"/>
   </a>
+  <a href="https://t.me/Just_0nlyMe">
+    <img src="https://img.shields.io/badge/-Telegram-%3C003f5c%3E=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+  </a>
 </div>
