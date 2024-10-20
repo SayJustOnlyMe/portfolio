@@ -2,7 +2,9 @@
 
 ## [Яндекс Практикум](https://practicum.yandex.ru/)
 
-### [SQL для разработки]
+<details>
+<summary>[SQL для разработки]</summary>
+  
   - **Модуль I**
     - [Решение задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201/queries.sql)
 
@@ -18,6 +20,7 @@
     - [Решение задачи часть 1](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_1.sql)
     - [Постановка задачи часть 2](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/description_2.md)
     - [Решение задачи часть 2](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_2.sql)
+</details>
 
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
