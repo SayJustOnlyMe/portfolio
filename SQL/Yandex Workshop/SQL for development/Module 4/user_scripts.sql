@@ -1,6 +1,6 @@
 SELECT pg_stat_statements_reset();
 
--- 1
+-- №1
 -- вычисляет среднюю стоимость блюда в определенном ресторане
 SELECT avg(dp.price)
 FROM dishes_prices dp
@@ -10,7 +10,7 @@ WHERE d.rest_id LIKE '%14ce5c408d2142f6bd5b7afad906bc7e%'
 	AND (dp.date_end::date >= current_date
 		OR dp.date_end IS NULL);
 	
--- 2
+-- №2
 -- выводит данные о конкретном заказе: id, дату, стоимость и текущий статус
 SELECT o.order_id, o.order_dt, o.final_cost, s.status_name
 FROM order_statuses os
@@ -23,7 +23,7 @@ WHERE o.user_id = 'c2885b45-dddd-4df3-b9b3-2cc012df727c'::uuid
 	WHERE order_id = o.order_id
     );
    
--- 3
+-- №3
 -- выводит id и имена пользователей, фамилии которых входят в список
 SELECT u.user_id, u.first_name
 FROM users u
@@ -32,20 +32,20 @@ WHERE u.last_name IN ('КЕДРИНА', 'АДОА', 'АКСЕНОВА', 'АЙМ�
                      , 'АЧАСОВА', 'ИЛЛАРИОНОВА', 'ЖЕЛЯБИНА', 'СВЕТОЗАРОВА', 'ИНЖИНОВА', 'СЕРДЮКОВА', 'ДАНСКИХА')
 ORDER BY 1 DESC;
 
--- 4
+-- №4
 -- ищет все салаты в списке блюд
 SELECT d.object_id, d.name
 FROM dishes d
 WHERE d.name LIKE 'salat%';
 
--- 5
+-- №5
 -- определяет максимальную и минимальную сумму заказа по городу
 SELECT max(p.payment_sum) max_payment, min(p.payment_sum) min_payment
 FROM payments p
     JOIN orders o ON o.order_id = p.order_id
 WHERE o.city_id = 2;
 
--- 6
+-- №6
 -- ищет всех партнеров определенного типа в определенном городе
 SELECT p.id partner_id, p.chain partner_name
 FROM partners p
@@ -53,20 +53,20 @@ FROM partners p
 WHERE p.type = 'Пекарня'
 	AND c.city_name = 'Владивосток';
 
--- 7
+-- №7
 -- ищет действия и время действия определенного посетителя
 SELECT event, datetime
 FROM user_logs
 WHERE visitor_uuid = 'fd3a4daa-494a-423a-a9d1-03fd4a7f94e0'
 ORDER BY 2;
 
--- 8
+-- №8
 -- ищет логи за текущий день
 SELECT *
 FROM user_logs
 WHERE datetime::date > current_date;
 
--- 9
+-- №9
 -- определяет количество неоплаченных заказов
 SELECT count(*)
 FROM order_statuses os
@@ -76,7 +76,7 @@ WHERE (SELECT count(*)
 	   WHERE os1.order_id = o.order_id AND os1.status_id = 2) = 0
 	AND o.city_id = 1;
 
--- 10
+-- №10
 -- определяет долю блюд дороже 1000
 SELECT (SELECT count(*)
 	    FROM dishes_prices dp
@@ -85,7 +85,7 @@ SELECT (SELECT count(*)
 FROM dishes_prices
 WHERE date_end IS NULL;
 
--- 11
+-- №11
 -- отбирает пользователей определенного города, чей день рождения находится в интервале +- 3 дня от текущей даты
 SELECT user_id, current_date - birth_date
 FROM users
@@ -93,7 +93,7 @@ WHERE city_id = 1
 	AND birth_date >= current_date - 3
 	AND birth_date <= current_date + 3;
 
--- 12
+-- №12
 -- вычисляет среднюю стоимость блюд разных категорий
 SELECT 'average price with fish', avg(dp.price)
 FROM dishes_prices dp
@@ -111,7 +111,7 @@ FROM dishes_prices dp
 WHERE dp.date_end IS NULL AND d.spicy = 1
 ORDER BY 2;
 
--- 13
+-- №13
 -- ранжирует города по общим продажам за определенный период
 SELECT ROW_NUMBER() OVER( ORDER BY sum(o.final_cost) DESC),
 	c.city_name,
@@ -122,13 +122,13 @@ WHERE order_dt >= to_timestamp('01.01.2021 00-00-00', 'dd.mm.yyyy hh24-mi-ss')
 	AND order_dt < to_timestamp('02.01.2021', 'dd.mm.yyyy hh24-mi-ss')
 GROUP BY c.city_name;
 
--- 14
+-- №14
 -- вычисляет количество заказов определенного пользователя
 SELECT COUNT(*)
 FROM orders
 WHERE user_id = '0fd37c93-5931-4754-a33b-464890c22689';
 
--- 15
+-- №15
 -- вычисляет количество заказов позиций, продажи которых выше среднего
 SELECT d.name, SUM(count) AS orders_quantity
 FROM order_items oi
