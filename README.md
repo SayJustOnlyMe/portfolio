@@ -1,6 +1,6 @@
 # Портфолио
 
-## [Яндекс Практикум](https://github.com/SayJustOnlyMe/portfolio/tree/main/SQL/Yandex%20Workshop)
+## [Яндекс Практикум](https://practicum.yandex.ru/)
 
 ### [SQL для разработки]
   - **Модуль I**
