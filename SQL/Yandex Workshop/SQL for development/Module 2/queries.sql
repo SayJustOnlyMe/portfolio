@@ -6,8 +6,7 @@ CREATE TYPE cafe.restaurant_type AS enum
     ('coffee_shop', 'restaurant', 'bar', 'pizzeria');
 
 /* Шаг 2. Создать таблицу cafe.restaurants с информацией о ресторанах. 
-В качестве первичного ключа использовать случайно сгенерированный uuid. 
-Таблица хранит: restaurant_uuid, название заведения, его локацию в формате PostGIS, тип кафе и меню. */
+В качестве первичного ключа использовать случайно сгенерированный uuid. */
 
 CREATE TABLE cafe.restaurants (
     restaurant_uuid uuid PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
@@ -17,7 +16,8 @@ CREATE TABLE cafe.restaurants (
 	menu jsonb
 );
 
-
+/* Заполним таблицу данными.
+Таблица хранит: restaurant_uuid, название заведения, его локацию в формате PostGIS, тип кафе и меню. */
 
 INSERT INTO cafe.restaurants (cafe_name, location, cafe_type, menu)
 SELECT DISTINCT
@@ -28,8 +28,8 @@ SELECT DISTINCT
 FROM raw_data.sales AS rds
 LEFT JOIN raw_data.menu AS rdm ON rdm.cafe_name = rds.cafe_name;
 
-
-
+/* Шаг 3. Создать таблицу cafe.managers с информацией о менеджерах. 
+В качестве первичного ключа использовать случайно сгенерированный uuid. */
 
 CREATE TABLE cafe.managers (
     manager_uuid uuid PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
@@ -37,7 +37,8 @@ CREATE TABLE cafe.managers (
 	manager_phone varchar(20)
 );
 
-
+/* Заполним таблицу данными.
+Таблица хранит: manager_uuid, имя менеджера и его телефон. */
 
 INSERT INTO cafe.managers (manager_name, manager_phone)
 SELECT DISTINCT
@@ -45,8 +46,9 @@ SELECT DISTINCT
 	rds.manager_phone
 FROM raw_data.sales AS rds;
     
-
-
+/* Шаг 4. Создать таблицу cafe.restaurant_manager_work_dates.
+Задать составной первичный ключ из двух полей: restaurant_uuid и manager_uuid. 
+Работа менеджера в ресторане от даты начала до даты окончания — единый период, без перерывов. */
 
 CREATE TABLE cafe.restaurant_manager_work_dates (
     restaurant_uuid uuid REFERENCES cafe.restaurants (restaurant_uuid),
@@ -56,7 +58,8 @@ CREATE TABLE cafe.restaurant_manager_work_dates (
 	PRIMARY KEY (restaurant_uuid, manager_uuid)
 );
 
-
+/* Заполним таблицу данными.
+Таблица хранит: restaurant_uuid, manager_uuid, дату начала работы в ресторане и дату окончания работы в ресторане. */
 
 INSERT INTO cafe.restaurant_manager_work_dates (restaurant_uuid, manager_uuid, start_work_date, end_work_date)
 SELECT
@@ -69,7 +72,8 @@ JOIN cafe.restaurants AS cr ON cr.cafe_name = rds.cafe_name
 JOIN cafe.managers AS cm ON cm.manager_name = rds.manager
 GROUP BY cr.restaurant_uuid, cm.manager_uuid;
 
-
+/* Шаг 5. Создать таблицу cafe.sales со столбцами: date, restaurant_uuid, avg_check. 
+Задать составной первичный ключ из даты и uuid ресторана. */
 
 CREATE TABLE cafe.sales (
     date DATE,
@@ -78,7 +82,7 @@ CREATE TABLE cafe.sales (
 	PRIMARY KEY (date, restaurant_uuid)
 );
 
-
+-- Заполним таблицу данными.
 
 INSERT INTO cafe.sales (date, restaurant_uuid, avg_check)
 SELECT DISTINCT
@@ -88,7 +92,7 @@ SELECT DISTINCT
 FROM raw_data.sales AS rds
 JOIN cafe.restaurants AS cr ON cr.cafe_name = rds.cafe_name;
 
-
+-- Этап 2
 
 WITH
 a AS (
