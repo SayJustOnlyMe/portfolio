@@ -94,6 +94,8 @@ JOIN cafe.restaurants AS cr ON cr.cafe_name = rds.cafe_name;
 
 -- Этап 2
 
+-- Задание 1
+
 WITH
 a AS (
     SELECT
@@ -119,7 +121,7 @@ FROM a
 JOIN b ON a.restaurant_uuid = b.restaurant_uuid
 WHERE rung <= 3;
 
-
+-- Задание 2
 
 CREATE MATERIALIZED VIEW cafe.avg_table AS
 WITH
@@ -145,7 +147,7 @@ SELECT
 FROM a
 WHERE extract_year != 2023;
 
-
+-- Задание 3
 
 WITH
 a AS (
@@ -163,7 +165,7 @@ SELECT
     count_manager AS "Сколько раз менялся менеджер"
 FROM a;
 
-
+-- Задание 4
 
 SELECT 
     cafe_name AS "Название заведения",
@@ -183,7 +185,7 @@ GROUP BY cafe_name
 ORDER BY "Количество пицц в меню" DESC
 LIMIT 3;
 
-
+-- Задание 5
 
 WITH
 a AS (
@@ -218,7 +220,7 @@ SELECT
 FROM a
 WHERE runk = 1;
 
-
+-- Задание 6
 
 SELECT
 	cafe_a AS "Название Заведения 1",
@@ -242,7 +244,7 @@ GROUP BY cafe_a, a_type, cafe_b, b_type, "Расстояние"
 ORDER BY "Расстояние" ASC
 LIMIT 1;
 
-
+-- Задание 7
 
 WITH
 a AS (
