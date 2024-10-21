@@ -101,4 +101,4 @@
 |  Район с самым большим количеством заведений  |  15  |
 |  Район с самым маленьким количеством заведений  |  2  |
 
- ### [Пример моего решения данной задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%202/queries.sql)
+ ### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%202/queries.sql)
