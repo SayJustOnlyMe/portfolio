@@ -65,4 +65,4 @@ WHERE city_id::integer = 4
 Администратор БД заметил, что регулярные похожие запросы от разных маркетологов нагружают базу, и в результате увеличивается время работы приложения.
 - [ ] Подумать с точки зрения производительности, как можно оптимально собирать и хранить данные для такого отчёта.
 
- ### [Пример моего решения данной задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_1.sql)
+ ### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_1.sql)
