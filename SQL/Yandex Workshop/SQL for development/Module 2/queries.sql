@@ -1,7 +1,13 @@
+-- Этап 1
+
+-- Шаг 1. Cоздать enum cafe.restaurant_type с типом заведения coffee_shop, restaurant, bar, pizzeria.
+
 CREATE TYPE cafe.restaurant_type AS enum
     ('coffee_shop', 'restaurant', 'bar', 'pizzeria');
 
-
+/* Шаг 2. Создать таблицу cafe.restaurants с информацией о ресторанах. 
+В качестве первичного ключа использовать случайно сгенерированный uuid. 
+Таблица хранит: restaurant_uuid, название заведения, его локацию в формате PostGIS, тип кафе и меню. */
 
 CREATE TABLE cafe.restaurants (
     restaurant_uuid uuid PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
