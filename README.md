@@ -6,6 +6,7 @@
 <summary>[SQL для разработки]</summary>
   
   - **Модуль I**
+    - [Постановка задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201/description.md)
     - [Решение задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201/queries.sql)
 
   - **Модуль II**
