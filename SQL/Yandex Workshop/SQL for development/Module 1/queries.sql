@@ -1,6 +1,10 @@
+-- Этап 1
+
+-- Создаём схему raw_data
+
 CREATE SCHEMA raw_date;
 
-
+-- Создаём таблицу sales для загрузки сырых данных в этой схеме
 
 CREATE TABLE raw_date.sales (
 	id INTEGER,
@@ -14,7 +18,7 @@ CREATE TABLE raw_date.sales (
     brand_origin VARCHAR(50)
 );
 
-
+-- Заполним таблицу sales данными, используя команду COPY в менеджере БД
 
 COPY raw_date.sales (id, auto, gasoline_consumption, price, date, person, phone, discount, brand_origin)
 FROM 'C:\Temp\cars.csv'
@@ -22,11 +26,11 @@ FROM 'C:\Temp\cars.csv'
 	NULL AS 'null'
 	CSV HEADER;
 
-
+-- Создаём схему car_shop
 
 CREATE SCHEMA IF NOT EXISTS car_shop;
 
-
+-- Создаём, связываем и заполняем данными таблицы
 
 CREATE TABLE car_shop.brand_origin ( 
     origin_id SERIAL PRIMARY KEY, 	
@@ -139,12 +143,14 @@ LEFT JOIN car_shop.person AS csp
       ON rds.person = csp.person_name 
       AND rds.phone = csp.phone;
 
-
+-- Задание 1
+-- Требуется написать запрос, который выведет процент моделей машин, у которых нет параметра gasoline_consumption.
 
 SELECT ROUND((SUM(CASE WHEN gasoline_consumption IS NULL THEN 1 ELSE 0 END) * 100.0) / COUNT(*)) AS nulls_percentage_gasoline_consumption
 FROM car_shop.models;
 
-
+-- Задание 2
+-- Требуется написать запрос, который покажет название бренда и среднюю цену его автомобилей в разбивке по всем годам с учётом скидки.
 
 SELECT brand_names AS brand_name, EXTRACT(YEAR FROM css.date) AS year, ROUND(AVG(css.price) , 2) AS price_avg
 FROM car_shop.brands AS csb
@@ -153,7 +159,8 @@ FROM car_shop.brands AS csb
 GROUP BY brand_names, EXTRACT(YEAR FROM css.date)
 ORDER BY brand_names, EXTRACT(YEAR FROM css.date) ASC;
 
-
+-- Задание 3
+-- Требуется посчитать среднюю цену всех автомобилей с разбивкой по месяцам в 2022 году с учётом скидки.
 
 SELECT EXTRACT(MONTH FROM css.date) AS month, EXTRACT(YEAR FROM css.date) AS year, ROUND(AVG(css.price) , 2) AS price_avg
 FROM car_shop.sales AS css
@@ -161,7 +168,9 @@ FROM car_shop.sales AS css
 GROUP BY EXTRACT(MONTH FROM css.date), EXTRACT(YEAR FROM css.date)
 ORDER BY EXTRACT(YEAR FROM css.date), EXTRACT(MONTH FROM css.date) ASC;
 
-
+-- Задание 4
+-- Используя функцию STRING_AGG.
+-- Требуется написать запрос, который выведет список купленных машин у каждого пользователя через запятую.
 
 SELECT csp.person_name AS person, STRING_AGG((csb.brand_names || ' ' || csm.model_name), ',' ) AS cars
 FROM car_shop.person AS csp 
@@ -171,7 +180,8 @@ JOIN car_shop.brands AS csb ON csb.brand_id = csm.brand_id
 GROUP BY csp.person_name
 ORDER BY csp.person_name;
 
-
+-- Задание 5
+-- Требуется написать запрос, который вернёт самую большую и самую маленькую цену продажи автомобиля с разбивкой по стране без учёта скидки.
 
 SELECT csbo.brand_origin_name AS brand_origin, ROUND(MAX(price * 100 / (100 - discount))) AS price_max, ROUND(MIN(price * 100 / (100 - discount))) AS price_min
 FROM car_shop.brand_origin AS csbo
@@ -180,7 +190,8 @@ JOIN car_shop.models AS csm ON csm.brand_id = csb.brand_id
 JOIN car_shop.sales AS css ON css.model_id = csm.model_id
 GROUP BY csbo.brand_origin_name;
 
-
+-- Задание 6
+-- Требуется написать запрос, который покажет количество всех пользователей из США.
 
 SELECT COUNT(csp.person_name) AS persons_from_usa_count
 FROM car_shop.person AS csp
