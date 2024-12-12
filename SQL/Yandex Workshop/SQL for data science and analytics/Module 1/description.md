@@ -18,4 +18,8 @@
 
 Отобразите имя, фамилию и названия аккаунтов людей в поле *network_username*, у которых названия аккаунтов начинаются на 'Silver'.
 
+### Запрос 5
+
+Выведите на экран всю информацию о людях, у которых названия аккаунтов в поле *network_username* содержат подстроку 'money', а фамилия начинается на 'K'.
+
  ### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/queries.sql)
