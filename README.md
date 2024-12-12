@@ -28,8 +28,8 @@
 <summary>[SQL для работы с данными и аналитики]</summary>
   
   - **Модуль I**
-    - [Постановка задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201/description.md)
-    - [Решение задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%201/queries.sql)
+    - [Постановка задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/description.md)
+    - [Решение задачи](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/queries.sql)
 
   - **Модуль II**
     - [Постановка задачи]()
