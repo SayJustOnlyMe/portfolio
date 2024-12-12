@@ -22,6 +22,9 @@
     - [Решение задачи часть 1](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_1.sql)
     - [Постановка задачи часть 2](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/description_2.md)
     - [Решение задачи часть 2](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20development/Module%204/queries_2.sql)
+
+<summary>[SQL для работы с данными и аналитики]</summary>
+
 </details>
 
 <div id="header" align="center">
