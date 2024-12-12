@@ -25,3 +25,13 @@ SELECT SUM(price_amount)
 FROM acquisition
 WHERE term_code = 'cash'
 AND EXTRACT(YEAR FROM acquired_at) IN (2011, 2012, 2013);
+
+-- Запрос 4:
+
+-- Отобразите имя, фамилию и названия аккаунтов людей в поле *network_username*, у которых названия аккаунтов начинаются на 'Silver'.
+
+SELECT first_name,
+       last_name,
+       network_username
+FROM people
+WHERE network_username LIKE 'Silver%';
