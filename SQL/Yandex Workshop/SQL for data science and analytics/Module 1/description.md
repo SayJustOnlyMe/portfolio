@@ -11,4 +11,4 @@
 Отобразите количество привлечённых средств для новостных компаний США. Используйте данные из таблицы *company*. Отсортируйте таблицу по убыванию значений в поле *funding_total*.
 
 
- ### [Пример моего решения данного проекта]([https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/queries.sql])
+ ### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/queries.sql)
