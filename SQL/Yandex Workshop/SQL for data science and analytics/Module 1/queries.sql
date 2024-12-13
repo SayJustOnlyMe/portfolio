@@ -313,3 +313,39 @@ JOIN funding_round AS fr ON c.id = fr.company_id
 WHERE category_code = 'social'
 AND fr.raised_amount > 0
 AND EXTRACT(YEAR FROM fr.funded_at) IN (2010, 2011, 2012, 2013);
+
+-- Запрос 22:
+
+-- Отберите данные по месяцам с 2010 по 2013 год, когда проходили инвестиционные раунды. 
+-- Сгруппируйте данные по номеру месяца и получите таблицу, в которой будут поля:
+- номер месяца, в котором проходили раунды;
+- количество уникальных названий фондов из США, которые инвестировали в этом месяце;
+- количество компаний, купленных за этот месяц;
+- общая сумма сделок по покупкам в этом месяце.
+
+WITH
+a1 AS (
+SELECT EXTRACT(MONTH FROM fr.funded_at) AS month1, 
+       COUNT(DISTINCT f.name) AS count_fund
+FROM funding_round AS fr
+JOIN investment AS i ON i.funding_round_id = fr.id
+JOIN fund AS f ON i.fund_id = f.id 
+WHERE EXTRACT(YEAR FROM fr.funded_at) IN ('2010','2011','2012','2013')
+AND f.country_code = 'USA'
+GROUP BY month1
+),
+a2 AS (
+SELECT EXTRACT(MONTH FROM a.acquired_at) AS month2, 
+       COUNT(a.acquired_company_id) AS count_acquired, 
+       SUM(a.price_amount) AS sum_price_amount
+FROM acquisition AS a
+WHERE EXTRACT(YEAR FROM a.acquired_at) IN ('2010','2011','2012','2013')
+GROUP BY month2
+)
+
+SELECT a1.month1, 
+       a1.count_fund, 
+       a2.count_acquired, 
+       a2.sum_price_amount
+FROM a1 
+INNER JOIN a2 ON a1.month1 = a2.month2;
