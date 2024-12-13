@@ -233,3 +233,25 @@ WHERE p.id IN (
 )
 GROUP BY p.id) AS ct
 ;
+
+-- Запрос 18:
+
+-- Напишите похожий запрос: выведите среднее число учебных заведений (всех, не только уникальных), которые окончили сотрудники Socialnet.
+
+SELECT AVG(si.count)
+FROM
+(SELECT 
+        COUNT(e.instituition) AS count
+FROM education AS e
+JOIN people AS p ON e.person_id = p.id
+JOIN company AS c ON p.company_id = c.id
+WHERE name = 'Socialnet'
+GROUP BY p.id) AS si;
+
+-- Запрос 19:
+
+-- Составьте таблицу из полей:
+-- *name_of_fund* — название фонда;
+-- *name_of_company* — название компании;
+-- *amount* — сумма инвестиций, которую привлекла компания в раунде.
+-- В таблицу войдут данные о компаниях, в истории которых было больше шести важных этапов, а раунды финансирования проходили с 2012 по 2013 год включительно.
