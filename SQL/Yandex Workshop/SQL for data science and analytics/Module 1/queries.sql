@@ -128,3 +128,17 @@ SELECT p.first_name,
        e.instituition
 FROM people AS p
 LEFT OUTER JOIN education AS e ON p.id = e.person_id;
+
+-- Запрос 12:
+
+-- Для каждой компании найдите количество учебных заведений, которые окончили её сотрудники. Выведите название компании и число уникальных названий учебных заведений. 
+-- Составьте топ-5 компаний по количеству университетов.
+
+SELECT c.name,
+       COUNT(DISTINCT e.instituition) AS count
+FROM company AS c
+JOIN people AS p ON c.id = p.company_id
+JOIN education AS e ON p.id = e.person_id
+GROUP BY c.name
+ORDER BY count DESC
+LIMIT 5;
