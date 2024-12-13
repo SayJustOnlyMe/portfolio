@@ -299,3 +299,17 @@ INNER JOIN company c2 ON a.acquired_company_id = c2.id
 WHERE a.price_amount != 0 AND c2.funding_total != 0
 ORDER BY a.price_amount DESC, c2.name ASC
 LIMIT 10;
+
+-- Запрос 21:
+
+-- Выгрузите таблицу, в которую войдут названия компаний из категории *social*, получившие финансирование с 2010 по 2013 год включительно. 
+-- Проверьте, что сумма инвестиций не равна нулю. Выведите также номер месяца, в котором проходил раунд финансирования.
+
+SELECT
+       c.name,
+       EXTRACT(MONTH FROM fr.funded_at) AS month
+FROM company AS c
+JOIN funding_round AS fr ON c.id = fr.company_id
+WHERE category_code = 'social'
+AND fr.raised_amount > 0
+AND EXTRACT(YEAR FROM fr.funded_at) IN (2010, 2011, 2012, 2013);
