@@ -55,4 +55,6 @@
 
 Отобразите имя и фамилию всех сотрудников стартапов. Добавьте поле с названием учебного заведения, которое окончил сотрудник, если эта информация известна.
 
+### Запрос 12
+
  ### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/queries.sql)
