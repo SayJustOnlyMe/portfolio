@@ -142,3 +142,29 @@ JOIN education AS e ON p.id = e.person_id
 GROUP BY c.name
 ORDER BY count DESC
 LIMIT 5;
+
+-- Запрос 13:
+
+-- Составьте список с уникальными названиями закрытых компаний, для которых первый раунд финансирования оказался последним.
+
+SELECT DISTINCT c.name
+FROM company AS c
+JOIN funding_round AS fr ON c.id = fr.company_id
+WHERE status = 'closed'
+AND (is_first_round = 1
+AND is_last_round = 1);
+
+-- Запрос 14:
+
+-- Составьте список уникальных номеров сотрудников, которые работают в компаниях, отобранных в предыдущем задании.
+
+SELECT DISTINCT p.id
+FROM people AS p
+WHERE company_id IN (
+                      SELECT DISTINCT c.id
+                      FROM company AS c
+                      JOIN funding_round AS fr ON c.id = fr.company_id
+                      WHERE status = 'closed'
+                      AND (is_first_round = 1
+                      AND is_last_round = 1)
+ );
