@@ -255,3 +255,24 @@ GROUP BY p.id) AS si;
 -- *name_of_company* — название компании;
 -- *amount* — сумма инвестиций, которую привлекла компания в раунде.
 -- В таблицу войдут данные о компаниях, в истории которых было больше шести важных этапов, а раунды финансирования проходили с 2012 по 2013 год включительно.
+
+WITH
+ar AS (
+        SELECT f.name as fund_name, 
+               c.name as company_name, 
+               fr.raised_amount, 
+               c.milestones, 
+               c.funding_rounds, 
+               fr.funded_at
+FROM investment AS i
+JOIN company AS c ON c.id = i.company_id
+JOIN fund AS f ON i.fund_id = f.id
+JOIN funding_round AS fr ON i.funding_round_id = fr.id)
+
+SELECT fund_name AS name_of_fund,
+       company_name AS name_of_company,
+       raised_amount AS amount
+FROM ar
+WHERE ar.milestones > 6
+AND EXTRACT(YEAR FROM funded_at) BETWEEN 2012 and 2013
+GROUP BY name_of_fund, name_of_company, amount;
