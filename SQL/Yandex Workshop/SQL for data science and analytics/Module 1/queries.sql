@@ -349,3 +349,40 @@ SELECT a1.month1,
        a2.sum_price_amount
 FROM a1 
 INNER JOIN a2 ON a1.month1 = a2.month2;
+
+-- Запрос 23:
+
+-- Составьте сводную таблицу и выведите среднюю сумму инвестиций для стран, в которых есть стартапы, зарегистрированные в 2011, 2012 и 2013 годах. 
+-- Данные за каждый год должны быть в отдельном поле. Отсортируйте таблицу по среднему значению инвестиций за 2011 год от большего к меньшему.
+
+WITH
+inv_2011 AS (
+             SELECT country_code AS code1,
+                    AVG(c.funding_total) AS avg1
+             FROM company AS c
+             WHERE EXTRACT(YEAR FROM c.founded_at) = 2011
+             GROUP BY code1
+),
+inv_2012 AS (
+             SELECT country_code AS code2,
+                    AVG(c.funding_total) AS avg2
+             FROM company AS c
+             WHERE EXTRACT(YEAR FROM c.founded_at) = 2012
+             GROUP BY code2
+),
+inv_2013 AS (
+             SELECT country_code AS code3,
+                    AVG(c.funding_total) AS avg3
+             FROM company AS c
+             WHERE EXTRACT(YEAR FROM c.founded_at) = 2013
+             GROUP BY code3
+)
+
+SELECT inv_2011.code1,
+       inv_2011.avg1,
+       inv_2012.avg2,
+       inv_2013.avg3
+FROM inv_2011
+INNER JOIN inv_2012 ON inv_2011.code1 = inv_2012.code2
+INNER JOIN inv_2013 ON inv_2012.code2 = inv_2013.code3
+ORDER BY inv_2011.avg1 DESC;
