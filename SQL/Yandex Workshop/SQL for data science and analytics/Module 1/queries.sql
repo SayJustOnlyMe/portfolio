@@ -168,3 +168,43 @@ WHERE company_id IN (
                       AND (is_first_round = 1
                       AND is_last_round = 1)
  );
+
+-- Запрос 15:
+
+-- Составьте таблицу, куда войдут уникальные пары с номерами сотрудников из предыдущей задачи и учебным заведением, которое окончил сотрудник.
+
+SELECT DISTINCT p.id,
+                e.instituition
+FROM people AS p
+JOIN education AS e ON p.id = e.person_id
+WHERE company_id IN (
+                      SELECT DISTINCT c.id
+                      FROM company AS c
+                      JOIN funding_round AS fr ON c.id = fr.company_id
+                      WHERE status = 'closed'
+                      AND (is_first_round = 1
+                      AND is_last_round = 1)
+ );
+
+-- Запрос 16:
+
+-- Посчитайте количество учебных заведений для каждого сотрудника из предыдущего задания. При подсчёте учитывайте, что некоторые сотрудники могли окончить одно и то же заведение дважды.
+
+SELECT p.id,
+       COUNT(e.instituition)
+FROM people AS p
+JOIN education AS e ON p.id = e.person_id
+WHERE p.id IN (
+               SELECT DISTINCT p.id
+               FROM people AS p
+               WHERE company_id IN (
+                                     SELECT DISTINCT c.id
+                                     FROM company AS c
+                                     JOIN funding_round AS fr ON c.id = fr.company_id
+                                     WHERE status = 'closed'
+                                     AND (is_first_round = 1
+                                     AND is_last_round = 1)
+ )
+)
+GROUP BY p.id
+;
