@@ -208,3 +208,28 @@ WHERE p.id IN (
 )
 GROUP BY p.id
 ;
+
+-- Запрос 17:
+
+-- Дополните предыдущий запрос и выведите среднее число учебных заведений (всех, не только уникальных), которые окончили сотрудники разных компаний. Нужно вывести только одну запись, группировка здесь не понадобится.
+
+SELECT AVG(ct.count)
+FROM 
+(SELECT p.id,
+       COUNT(e.instituition) AS count
+FROM people AS p
+JOIN education AS e ON p.id = e.person_id
+WHERE p.id IN (
+               SELECT DISTINCT p.id
+               FROM people AS p
+               WHERE company_id IN (
+                                     SELECT DISTINCT c.id
+                                     FROM company AS c
+                                     JOIN funding_round AS fr ON c.id = fr.company_id
+                                     WHERE status = 'closed'
+                                     AND (is_first_round = 1
+                                     AND is_last_round = 1)
+ )
+)
+GROUP BY p.id) AS ct
+;
