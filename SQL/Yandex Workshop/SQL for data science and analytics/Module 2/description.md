@@ -124,4 +124,4 @@
 - номер недели;
 - дата и время последнего поста, опубликованного на этой неделе.
 
-### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%201/queries.sql)
+### [Пример моего решения данного проекта](https://github.com/SayJustOnlyMe/portfolio/blob/main/SQL/Yandex%20Workshop/SQL%20for%20data%20science%20and%20analytics/Module%202/queries.sql)
